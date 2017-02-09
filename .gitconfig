@@ -1,0 +1,37 @@
+[user]
+  name         = Sylvain Just
+  email        = sylvain.just.external@watchever.com
+[core]
+  editor       = vim
+  excludesfile = ~/.gitconf/ignore_global
+[merge]
+  tool         = vimdiff
+[alias]
+  br           = branch
+  ci           = commit
+  co           = checkout
+  df           = diff
+  ds           = diff --name-only
+  lga          = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph --all
+  lg           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph
+  l            = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso
+  mg           = merge --no-commit
+  rb           = rebase
+  st           = status -sb
+
+  dft          = difftool -y
+  mgt          = mergetool -y
+  ls           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --stat
+  lp           = log --abbrev=8 --abbrev-commit --date=iso --patch
+  lh           = log --abbrev=8 --abbrev-commit --date=iso --patch --histogram
+  pop          = stash pop
+  sts          = stash
+[color]
+  branch       = auto
+  diff         = auto
+  status       = auto
+  interactive  = auto
+[push]
+  default      = matching
+[commit]
+  template     = ~/.gitconf/commit-message.txt

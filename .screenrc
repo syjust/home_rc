@@ -1,0 +1,19 @@
+setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+bind ^j focus down
+bind ^k focus up
+bind ^h focus left
+bind ^l focus right
+bind ^t focus top
+bind ^b focus bottom
+hardstatus alwayslastline "%{= BW} %-Lw%{= WB}%n+%f %t%{-}%+Lw %=[%l]"
+bind -c select2 0 select 10
+bind -c select2 1 select 11
+bind -c select2 2 select 12
+bind -c select2 3 select 13
+bind -c select2 4 select 14
+bind -c select2 5 select 15
+bind -c select2 6 select 16
+bind -c select2 7 select 17
+bind -c select2 8 select 18
+bind -c select2 9 select 19
+bind - command -c select2

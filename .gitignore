@@ -1,0 +1,8 @@
+.vim/undo/*
+.viminfo
+.vim/.netrwbook
+.vim/.netrwhist
+.bash_history
+.lesshst
+.ssh
+.aptitude
