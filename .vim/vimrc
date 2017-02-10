@@ -13,6 +13,9 @@ set tabstop     =2
 set nocompatible " Because filetype detection doesn't work well in compatible mode
 syntax enable
 
+" pdv author doc bloc (php only)
+let pdv_author="sylvain.just"
+
 " Allow netrw to remove non-empty local directories
 let g:netrw_localrmdir = 'rm -r'
 
