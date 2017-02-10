@@ -56,21 +56,24 @@ if !exists('ctags_common_args')
     let g:ctags_common_args = " --regex-PHP=\"/^(\\s*([A-Z_]+)\\s*=\\s*([0-9]+|[tT][rR][uU][eE]|[fF][aA][lL][sS][Ee]|[_A-Z]+|['\\\"][^'\\\"]+['\\\"])\\s*[,;]?)/\\2/d/\" --regex-PHP='/const\\s+([^ \\t=]+)/\\1/d/' -R --php-kinds=+cidf-vj "
 endif
 
-" php project ttt
+source ~/.vim/after/projects.vim
+
 if exists('php_project_path')
     " phpcomplete tag cmd
+    if exists('ctags_ramfs')
+      let &tags=g:ctags_ramfs.".php.tags"
+    else
+      let &tags=g:php_project_path.".php.tags"
+    endif
     let g:tagcommands = {
     \    "php" : {
-    \        "tagfile" : g:php_project_path.".php.tags",
+    \        "tagfile" : &tags,
     \        "args" : g:ctags_common_args,
     \        "cmd" : g:Tlist_Ctags_Cmd,
     \        "files" : g:php_project_path
     \    }
     \}
     " static .tags declaration because tagfile seem's don't work fine
-    let &tags=g:php_project_path.".php.tags"
     " <C-f> : find all occurence under cursor fro type php excluding
     nnoremap <C-f> ye:copen<CR>:Ack --type=php --ignore-file=is:.php.tags --ignore-dir=.git --ignore-dir=lib/html2pdf --ignore-dir=lib/Zend --ignore-dir=lib/sftp <C-f>p<CR>
 endif
-
-source ~/.vim/after/projects.vim
