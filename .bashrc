@@ -156,4 +156,4 @@ else
 fi
 export EDITOR=vim
 
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/.bin
