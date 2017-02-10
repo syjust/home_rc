@@ -1,0 +1,33 @@
+[submodule ".vim/bundle/ack.vim"]
+	path = .vim/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule ".vim/bundle/pdv"]
+	path = .vim/bundle/pdv
+	url = https://github.com/syjust/pdv.git
+[submodule ".vim/bundle/phpcomplete.vim"]
+	path = .vim/bundle/phpcomplete.vim
+	url = https://github.com/shawncplus/phpcomplete.vim.git
+[submodule ".vim/bundle/supertab"]
+	path = .vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule ".vim/bundle/taglist.vim"]
+	path = .vim/bundle/taglist.vim
+	url = https://github.com/syjust/taglist.vim.git
+[submodule ".vim/bundle/ultisnips"]
+	path = .vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule ".vim/bundle/vim-phpqa"]
+	path = .vim/bundle/vim-phpqa
+	url = https://github.com/joonty/vim-phpqa.git
+[submodule ".vim/bundle/vim-taggatron"]
+	path = .vim/bundle/vim-taggatron
+	url = https://github.com/joonty/vim-taggatron.git
+[submodule ".vim/bundle/vmustache"]
+	path = .vim/bundle/vmustache
+	url = https://github.com/tobyS/vmustache
+[submodule ".bin"]
+	path = .bin
+	url = /var/git/syl-bin/
+[submodule ".bash"]
+	path = .bash
+	url = https://github.com/syjust/bashLib.git
