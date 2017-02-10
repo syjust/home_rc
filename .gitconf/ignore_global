@@ -38,10 +38,16 @@
 ehthumbs.db
 Thumbs.db
 
-# Text Editors backup files #
-#############################
+# Text Editors backup and conf files #
+######################################
 *.swp
 *~
+.project
+.settings/
+
+# packet managers directory #
+#############################
+.pdepend
 
 # Diff & Patch subfiles #
 #########################
