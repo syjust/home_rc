@@ -1,3 +1,5 @@
+let php_folding=0
+
 " big title php coment with '\'
 map \ A //yyPv$r/yyjpklll
 
