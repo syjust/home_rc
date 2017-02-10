@@ -8,9 +8,9 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
-"-------------"
-" phpcomplete "
-"-------------"
+"""""""""""""""
+" PHPCOMPLETE "
+"""""""""""""""
 "let g:phpcomplete_active_function_extensions
 "let g:phpcomplete_active_class_extensions
 "let g:phpcomplete_active_interface_extensions
@@ -23,10 +23,18 @@ let g:phpcomplete_parse_docblock_comments=1 "1/0[default0]
 let g:phpcomplete_cache_taglists=1 "1/0[default1]
 let g:phpcomplete_enhance_jump_to_definition=1 "1/0[default1]
 
-" phpqa
-let g:phpqa_messdetector_ruleset=$HOME."/phpmd-ruleset.xml"
+"""""""""
+" PHPQA "
+"""""""""
+let g:phpqa_php_cmd='/usr/bin/php'
+" phpmd come from https://phpmd.org/download/index.html || https://github.com/phpmd/phpmd
 let g:phpqa_messdetector_cmd=$HOME."/bin/phpmd"
-let g:phpqa_messdetector_autorun=1
+" codesniffer (not already implemented in my home_rc env)
+" let g:phpqa_codesniffer_cmd='/path/to/phpcs'
+" come from https://github.com/phpmd/phpmd/blob/master/src/main/resources/rulesets/unusedcode.xml and modified locally
+let g:phpqa_messdetector_ruleset=$HOME."/.vim/ftplugin/php/rulesets/unusedcode.xml"
+" no autorun : serious latency problem
+let g:phpqa_messdetector_autorun=0
 let g:phpqa_codesniffer_autorun=0
 
 " php doc block (pdv) template snip dir (<C-p>)
