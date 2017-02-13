@@ -9,6 +9,7 @@
 [alias]
   br           = branch
   ci           = commit
+  cia          = commit --amend
   co           = checkout
   df           = diff
   ds           = diff --name-only
@@ -17,6 +18,9 @@
   l            = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso
   mg           = merge --no-commit
   rb           = rebase
+  rbi          = rebase --interactive
+  rba          = rebase --abort
+  rbc          = rebase --continue
   st           = status -sb
 
   dft          = difftool -y
@@ -35,3 +39,5 @@
   default      = matching
 [commit]
   template     = ~/.gitconf/commit-message.txt
+[init]
+	templatedir = ~/.gitconf/templates/
