@@ -157,3 +157,4 @@ fi
 export EDITOR=vim
 
 export PATH=$PATH:~/.bin
+export BASH_LIB=~/.bash/
