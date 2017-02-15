@@ -4,16 +4,16 @@ set expandtab
 set number
 set ruler
 set undofile
-set undodir     =~/.vim/undo/
-set background  =dark
-set history     =500
-set shiftwidth  =2
-set softtabstop =2
-set tabstop     =2
+set undodir=~/.vim/undo/
+set background=dark
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set nocompatible " Because filetype detection doesn't work well in compatible mode
 syntax enable
 
 " pdv author doc bloc (php only)
+" @todo expand for all doc block with UltiSnip bundle
 let pdv_author="sylvain.just"
 
 " Allow netrw to remove non-empty local directories
@@ -31,4 +31,19 @@ execute pathogen#infect()
 let g:Tlist_Ctags_Cmd   = "/usr/bin/ctags "
 let g:Tlist_Auto_Update = 1
 let g:Tlist_Sort_Type   = "name"
+" common ctags-args for all env
+" +cidf-v :
+" +c  classes 
+" +i  interfaces 
+" +d  constant definitions 
+" +f  functions 
+" -v  variables 
+" -j  javascript functions 
+let g:ctags_common_args = ""
 nnoremap <C-k> :Tlist<CR><C-w><C-h>
+let mapleader = ","
+" common <C-f> behavior
+nnoremap <C-f> ye:copen<CR>:Ack <C-f>p<CR>
+
+" se history after pathogen#infect() because seems reloaded
+set history=500

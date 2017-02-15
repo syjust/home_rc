@@ -28,13 +28,13 @@ let g:phpcomplete_enhance_jump_to_definition=1 "1/0[default1]
 """""""""
 let g:phpqa_php_cmd='/usr/bin/php'
 " phpmd come from https://phpmd.org/download/index.html || https://github.com/phpmd/phpmd
-let g:phpqa_messdetector_cmd=$HOME."/bin/phpmd"
+let g:phpqa_messdetector_cmd=$HOME."/.bin/phpmd"
 " codesniffer (not already implemented in my home_rc env)
 " let g:phpqa_codesniffer_cmd='/path/to/phpcs'
 " come from https://github.com/phpmd/phpmd/blob/master/src/main/resources/rulesets/unusedcode.xml and modified locally
 let g:phpqa_messdetector_ruleset=$HOME."/.vim/ftplugin/php/rulesets/unusedcode.xml"
 " no autorun : serious latency problem
-let g:phpqa_messdetector_autorun=0
+let g:phpqa_messdetector_autorun=1
 let g:phpqa_codesniffer_autorun=0
 
 " php doc block (pdv) template snip dir (<C-p>)
@@ -54,7 +54,7 @@ let g:phpcomplete_mappings = {
 " debug taggatron ctags cmd
 "let g:taggatron_verbose=1
 
-" common ctags-args for PHP env
+" ctags Tlist PHP kinds
 " +cidf-v :
 " +c  classes 
 " +i  interfaces 
@@ -62,9 +62,8 @@ let g:phpcomplete_mappings = {
 " +f  functions 
 " -v  variables 
 " -j  javascript functions 
-if !exists('ctags_common_args')
-    let g:ctags_common_args = " --regex-PHP=\"/^(\\s*([A-Z_]+)\\s*=\\s*([0-9]+|[tT][rR][uU][eE]|[fF][aA][lL][sS][Ee]|[_A-Z]+|['\\\"][^'\\\"]+['\\\"])\\s*[,;]?)/\\2/d/\" --regex-PHP='/const\\s+([^ \\t=]+)/\\1/d/' -R --php-kinds=+cidf-vj "
-endif
+#
+let g:ctags_common_args = " --regex-PHP=\"/^(\\s*([A-Z_]+)\\s*=\\s*([0-9]+|[tT][rR][uU][eE]|[fF][aA][lL][sS][Ee]|[_A-Z]+|['\\\"][^'\\\"]+['\\\"])\\s*[,;]?)/\\2/d/\" --regex-PHP='/const\\s+([^ \\t=]+)/\\1/d/' -R --php-kinds=+cidf-vj "
 
 source ~/.vim/after/projects.vim
 
@@ -85,5 +84,7 @@ if exists('php_project_path')
     \}
     " static .tags declaration because tagfile seem's don't work fine
     " <C-f> : find all occurence under cursor fro type php excluding
+    " overwrite <C-f> for PHP env
+    " @todo get ignore form project.vim
     nnoremap <C-f> ye:copen<CR>:Ack --type=php --ignore-file=is:.php.tags --ignore-dir=.git --ignore-dir=lib/html2pdf --ignore-dir=lib/Zend --ignore-dir=lib/sftp <C-f>p<CR>
 endif
