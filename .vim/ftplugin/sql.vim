@@ -1,5 +1,7 @@
-" big title php coment with '"'
-map \ A --yyPr/*lxv$r*r/yyjpklll
+" big sql COMENT block with '\'
+map \ }O*/<esc>{o/*<esc>
+" big sql UNCOMENT block with '"'
+map " ?\/\*<cr>dd/\*\/<cr>dd{
 " ctags Tlist SQL kinds
 " c  cursors
 " d  prototypes [off]

@@ -20,8 +20,8 @@ let pdv_author="sylvain.just"
 let g:netrw_localrmdir = 'rm -r'
 
 " autosave remote sshfs on tmp local
-autocmd BufWritePost ~/prod-tmp/syl/* :w! ~/tmp/prod/<afile>
-autocmd BufWritePost ~/stag-tmp/syl/* :w! ~/tmp/stag/<afile>
+autocmd BufWritePost ~/prod-tmp/syl/* :w! ~/save/prod/<afile>
+autocmd BufWritePost ~/stag-tmp/syl/* :w! ~/save/stag/<afile>
 
 " auto read .vim/ftplugin with filetype
 filetype plugin on
