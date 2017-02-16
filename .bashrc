@@ -103,31 +103,32 @@ fi
 
 
 # https://github.com/Maximus5/ConEmu/issues/863#issuecomment-247213713
-#alias scp='__ssh_agent && scp'
-#alias ssh='__ssh_agent && ssh'
-#
-#function __ssh_agent() {
-#    # If no SSH agent is already running, start one now. Re-use sockets so we never
-#    # have to start more than one session.
-#
-#    ssh-add -l >/dev/null 2>&1
-#    result=$?
-#    if [ $result = 2 ]; then
-#        # read ssh-agent config from file and retry
-#        [ -r ~/.ssh-agent ] && source ~/.ssh-agent >/dev/null
-#        ssh-add -l >/dev/null 2>&1
-#        result=$?
-#        if [ $result = 2 ]; then
-#            ssh-agent > ~/.ssh-agent
-#            source ~/.ssh-agent >/dev/null
-#            ssh-add
-#        fi
-#    fi
-#    if [ $result = 1 ]; then
-#        ssh-add
-#    fi
-#}
-#
+alias scp='_ssh_agent && scp'
+alias ssh='_ssh_agent && ssh'
+alias git="_ssh_agent && git"
+
+function _ssh_agent() {
+    # If no SSH agent is already running, start one now. Re-use sockets so we never
+    # have to start more than one session.
+
+    ssh-add -l >/dev/null 2>&1
+    result=$?
+    if [ $result = 2 ]; then
+        # read ssh-agent config from file and retry
+        [ -r ~/.ssh-agent ] && source ~/.ssh-agent >/dev/null
+        ssh-add -l >/dev/null 2>&1
+        result=$?
+        if [ $result = 2 ]; then
+            ssh-agent > ~/.ssh-agent
+            source ~/.ssh-agent >/dev/null
+            ssh-add
+        fi
+    fi
+    if [ $result = 1 ]; then
+        ssh-add
+    fi
+}
+
 
 _ssh() {
     local cur prev opts
