@@ -6,3 +6,6 @@
 .lesshst
 .ssh
 .aptitude
+.gitconf/templates/hooks/*sample
+.psql_history
+.ssh-agent
