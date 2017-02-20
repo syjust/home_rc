@@ -157,5 +157,6 @@ else
 fi
 export EDITOR=vim
 
-export PATH=$PATH:~/.bin
 export BASH_LIB=~/.bash/
+export PATH=$PATH:~/.bin:$BASH_LIB/bin
+export PGPASSFILE=~/.pgpass.conf

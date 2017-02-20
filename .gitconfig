@@ -7,6 +7,8 @@
 [merge]
   tool         = vimdiff
 [alias]
+  dev          = "! git branch -a | grep develop"
+  rel          = "! git branch -a | grep release"
   br           = branch
   ci           = commit
   cia          = commit --amend

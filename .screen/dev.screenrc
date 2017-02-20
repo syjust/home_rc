@@ -1,0 +1,12 @@
+source $HOME/.default.screenrc
+
+screen -t rest-edit
+screen -t rest-git
+
+screen -t notif-edit
+screen -t notif-git
+
+screen -t mngr-edit
+screen -t mngr-git
+
+chdir $HOME

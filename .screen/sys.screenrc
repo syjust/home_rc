@@ -1,0 +1,9 @@
+source $HOME/.default.screenrc
+
+screen -t r00t sudo su
+"screen -t www screen -x www-data/shared
+screen -t bash
+chdir $HOME/.vim
+screen -t vim 
+
+chdir $HOME

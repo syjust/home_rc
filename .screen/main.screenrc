@@ -1,0 +1,23 @@
+escape ^||
+bindkey ^ad detach
+hardstatus alwayslastline "%{b kw}%H %{r}%1` %{w}| %{g}%c %{w}| %{y}%d.%m.%Y %{w}| %{g}%l %{w}| %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
+screen -t MAIN
+screen -t SYS launchScreen sys
+screen -t SQL launchScreen sql
+screen -t DEV launchScreen dev
+
+# KEEPING SPLIT with alternate SESSION #
+########################################
+#http://aperiodic.net/screen/faq#when_i_split_the_display_and_then_detach_screen_forgets_the_split
+#(The implied question being, “How do I keep my split windows over a detach?”)
+#
+#The short is answer is that you can't. The longer answer is that you can fake it.
+#
+#Splits are a property of your display. The process managing your screen session doesn't really know about them; only the single process that's displaying the session does. Thus, the screen session can't remember the splits because it doesn't know about them, and once you detach, the process that did know about them has exited.
+#
+#The hack is to use nested screen sessions. Start one session and give it some escape sequence that you won't use much (or just disable its escape character completely). Bind your usual detach key sequence to this screen session. Now, start or attach to your main screen session. All of your work will be done in the inner session, and you can split your display. When you detach, however, it will be the outer session that detaches, so your splits in the inner session will be preserved.
+#
+#Assuming you use the default escape character, C-a, your alternate screenrc should contain:
+#
+#escape ""
+#bindkey ^ad detach

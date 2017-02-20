@@ -1,0 +1,12 @@
+source $HOME/.default.screenrc
+
+screen -t prod-sql #ssh prod
+screen -t prod-edit
+
+screen -t stag-sql #ssh stag
+screen -t stag-edit
+
+screen -t dev-sql psql -U dev -h dev
+screen -t dev-edit
+
+chdir $HOME

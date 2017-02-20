@@ -22,6 +22,7 @@ let g:netrw_localrmdir = 'rm -r'
 " autosave remote sshfs on tmp local
 autocmd BufWritePost ~/prod-tmp/syl/* :w! ~/save/prod/<afile>
 autocmd BufWritePost ~/stag-tmp/syl/* :w! ~/save/stag/<afile>
+autocmd BufWritePost ~/dev-tmp/syl/* :w! ~/save/dev/<afile>
 
 " auto read .vim/ftplugin with filetype
 filetype plugin on
@@ -44,6 +45,8 @@ nnoremap <C-k> :Tlist<CR><C-w><C-h>
 let mapleader = ","
 " common <C-f> behavior
 nnoremap <C-f> ye:copen<CR>:Ack <C-f>p<CR>
+" map <C-g> for previous in tag-stack (inverse of <C-t>
+map <C-G> :tag<cr>
 
-" se history after pathogen#infect() because seems reloaded
+" se history after pathogen#infect() because it seems be reloaded during bundle process
 set history=500
