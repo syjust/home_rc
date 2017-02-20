@@ -1,4 +1,4 @@
-source $HOME/.default.screenrc
+source $HOME/.screenrc
 
 screen -t rest-edit
 screen -t rest-git

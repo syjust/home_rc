@@ -1,4 +1,4 @@
-source $HOME/.default.screenrc
+source $HOME/.screenrc
 
 screen -t prod-sql #ssh prod
 screen -t prod-edit

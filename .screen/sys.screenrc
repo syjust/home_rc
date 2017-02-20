@@ -1,4 +1,4 @@
-source $HOME/.default.screenrc
+source $HOME/.screenrc
 
 screen -t r00t sudo su
 "screen -t www screen -x www-data/shared
