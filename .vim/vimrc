@@ -28,6 +28,36 @@ autocmd BufWritePost ~/dev-tmp/syl/* :w! ~/save/dev/<afile>
 filetype plugin on
 execute pathogen#infect()
 
+"""""""""""""""""""""""
+" Vedbug xdebug tests "
+"""""""""""""""""""""""
+" :help Vdebug
+call pathogen#helptags()
+
+" Once in debugging mode, the following default mappings are available:
+" <F5>: start/run (to next breakpoint/end of script)
+" <F2>: step over
+" <F3>: step into
+" <F4>: step out
+" <F6>: stop debugging (kills script)
+" <F7>: detach script from debugger
+" <F9>: run to cursor
+" <F10>: toggle line breakpoint
+" <F11>: show context variables (e.g. after 'eval')
+" <F12>: evaluate variable under cursor
+" :Breakpoint <type> <args>: set a breakpoint of any type (see :help VdebugBreakpoints)
+" :VdebugEval <code>: evaluate some code and display the result
+" <Leader>e: evaluate the expression under visual highlight and display the result
+" To stop debugging, press <F6>. Press it again to close the debugger interface.
+
+":VdebugOpt debug_file ~/vdebug.log
+":VdebugOpt debug_file_level 2
+
+""""""""""""""
+" Vedbug EOL "
+""""""""""""""
+
+
 " <C-k> open right panel with functions & contants
 let g:Tlist_Ctags_Cmd   = "/usr/bin/ctags "
 let g:Tlist_Auto_Update = 1
