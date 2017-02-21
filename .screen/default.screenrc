@@ -1,14 +1,27 @@
 setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+# resizes
 bind ^j focus down
 bind ^k focus up
 bind ^h focus left
 bind ^l focus right
 bind ^t focus top
 bind ^b focus bottom
-bind . resize +10
-bind , resize -10
+
+# focus
+# shift + right arrow
+bindkey "\033\133\061\073\062\103" resize +50
+# shift + left arrow
+bindkey "\033\133\061\073\062\104" resize -50
+# ctrl + O
+bindkey "\017" resize +10
+# ^a /
 bind / resize =
+# ctrl + I
+bindkey "\011" resize -10
+
 hardstatus alwayslastline "%{= BW} %-Lw%{= WB}%n+%f %t%{-}%+Lw %=[%l]"
+
+# windows number & select
 bind -c select2 0 select 10
 bind -c select2 1 select 11
 bind -c select2 2 select 12
