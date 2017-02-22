@@ -9,6 +9,11 @@
 [alias]
   dev          = "! git branch -a | grep develop"
   rel          = "! git branch -a | grep release"
+  who          = "! git for-each-ref --no-merge origin/develop --format='%(color:green)%(committerdate:short)%(color:reset) %(color:yellow)(%(refname:short))%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset)' 'refs/remotes/origin/developments' | sort"
+  mine         = "! git for-each-ref --no-merge origin/develop --format='%(color:green)%(committerdate:short)%(color:reset) %(color:yellow)(%(refname:short))%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset)' 'refs/remotes/origin/developments' | sort | grep Sylvain"
+  switch       = "! f(){ d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
+  sw           = "! f(){ d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
+  cohist       = "! f(){ git reflog | awk '$3 ~ /checkout/ {print $1\": checkout from \"$6}' | cat --number; }; f"
   br           = branch
   ci           = commit
   cia          = commit --amend

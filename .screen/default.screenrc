@@ -7,17 +7,21 @@ bind ^l focus right
 bind ^t focus top
 bind ^b focus bottom
 
+# unbind detach
+bind ^d
+bind d
+
 # focus
 # shift + right arrow
-bindkey "\033\133\061\073\062\103" resize +50
+bindkey "\033\133\061\073\062\103" resize +20
 # shift + left arrow
-bindkey "\033\133\061\073\062\104" resize -50
+bindkey "\033\133\061\073\062\104" resize -20
 # ctrl + O
-bindkey "\017" resize +10
+#bindkey "\017" resize +10
+# ctrl + T
+#bindkey "\024" resize -10
 # ^a /
 bind / resize =
-# ctrl + I
-bindkey "\011" resize -10
 
 hardstatus alwayslastline "%{= BW} %-Lw%{= WB}%n+%f %t%{-}%+Lw %=[%l]"
 
