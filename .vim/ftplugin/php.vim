@@ -36,6 +36,7 @@ let g:phpqa_messdetector_ruleset=$HOME."/.vim/ftplugin/php/rulesets/unusedcode.x
 " no autorun : serious latency problem
 let g:phpqa_messdetector_autorun=1
 let g:phpqa_codesniffer_autorun=0
+let g:phpqa_codecoverage_autorun=0
 
 " php doc block (pdv) template snip dir (<C-p>)
 let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates_snip"
@@ -62,7 +63,7 @@ let g:phpcomplete_mappings = {
 " +f  functions 
 " -v  variables 
 " -j  javascript functions 
-#
+
 let g:ctags_common_args = " --regex-PHP=\"/^(\\s*([A-Z_]+)\\s*=\\s*([0-9]+|[tT][rR][uU][eE]|[fF][aA][lL][sS][Ee]|[_A-Z]+|['\\\"][^'\\\"]+['\\\"])\\s*[,;]?)/\\2/d/\" --regex-PHP='/const\\s+([^ \\t=]+)/\\1/d/' -R --php-kinds=+cidf-vj "
 
 source ~/.vim/after/projects.vim

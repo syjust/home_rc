@@ -4,3 +4,4 @@ alias grep="grep --color=auto"
 
 #prevent mistyping
 alias gti=git
+alias gi=git
