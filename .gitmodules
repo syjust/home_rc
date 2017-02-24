@@ -22,9 +22,6 @@
 [submodule ".vim/bundle/vmustache"]
 	path = .vim/bundle/vmustache
 	url = https://github.com/tobyS/vmustache
-[submodule ".bin"]
-	path = .bin
-	url = /var/git/syl-bin/
 [submodule ".bash"]
 	path = .bash
 	url = https://github.com/syjust/bashLib.git

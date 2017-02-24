@@ -10,3 +10,4 @@
 .psql_history
 .ssh-agent
 .pass/
+.mysql_history
