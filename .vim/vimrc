@@ -12,43 +12,46 @@ set tabstop=2
 set nocompatible " Because filetype detection doesn't work well in compatible mode
 syntax enable
 
-" pdv author doc bloc (php only)
-" @todo expand for all doc block with UltiSnip bundle
-let pdv_author="sylvain.just"
+if !&diff
+  " pdv author doc bloc (php only)
+  " @todo expand for all doc block with UltiSnip bundle
+  let pdv_author="sylvain.just"
 
-" Allow netrw to remove non-empty local directories
-let g:netrw_localrmdir = 'rm -r'
+  " Allow netrw to remove non-empty local directories
+  let g:netrw_localrmdir = 'rm -r'
 
-" autosave remote sshfs on tmp local
-autocmd BufWritePost ~/prod-tmp/syl/* :w! ~/save/prod/<afile>
-autocmd BufWritePost ~/stag-tmp/syl/* :w! ~/save/stag/<afile>
-autocmd BufWritePost ~/dev-tmp/syl/* :w! ~/save/dev/<afile>
+  " autosave remote sshfs on tmp local
+  autocmd BufWritePost ~/prod-tmp/syl/* :w! ~/save/prod/<afile>
+  autocmd BufWritePost ~/stag-tmp/syl/* :w! ~/save/stag/<afile>
+  autocmd BufWritePost ~/dev-tmp/syl/* :w! ~/save/dev/<afile>
 
-" auto read .vim/ftplugin with filetype
-filetype plugin on
-execute pathogen#infect()
+  " auto read .vim/ftplugin with filetype
+  filetype plugin on
+  execute pathogen#infect()
 
-source ~/.vim/vdebug.vim
+  source ~/.vim/vdebug.vim
 
-" <C-k> open right panel with functions & contants
-let g:Tlist_Ctags_Cmd   = "/usr/bin/ctags "
-let g:Tlist_Auto_Update = 1
-let g:Tlist_Sort_Type   = "name"
-" common ctags-args for all env
-" +cidf-v :
-" +c  classes 
-" +i  interfaces 
-" +d  constant definitions 
-" +f  functions 
-" -v  variables 
-" -j  javascript functions 
-let g:ctags_common_args = ""
-nnoremap <C-k> :Tlist<CR><C-w><C-h>
-let mapleader = ","
-" common <C-f> behavior
-nnoremap <C-f> ye:copen<CR>:Ack <C-f>p<CR>
-" map <C-g> for previous in tag-stack (inverse of <C-t>
-map <C-G> :tag<cr>
+  " <C-k> open right panel with functions & contants
+  let g:Tlist_Ctags_Cmd   = "/usr/bin/ctags "
+  let g:Tlist_Auto_Update = 1
+  let g:Tlist_Sort_Type   = "name"
+  " common ctags-args for all env
+  " +cidf-v :
+  " +c  classes
+  " +i  interfaces
+  " +d  constant definitions
+  " +f  functions
+  " -v  variables
+  " -j  javascript functions
+  let g:ctags_common_args = ""
+  nnoremap <C-k> :Tlist<CR><C-w><C-h>
+  let mapleader = ","
+  " common <C-f> behavior
+  nnoremap <C-f> ye:copen<CR>:Ack <C-f>p<CR>
+  " map <C-g> for previous in tag-stack (inverse of <C-t>
+  map <C-G> :tag<cr>
 
-" se history after pathogen#infect() because it seems be reloaded during bundle process
+  " se history after pathogen#infect() because it seems be reloaded during bundle process
+endif
+
 set history=500

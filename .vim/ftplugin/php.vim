@@ -38,6 +38,7 @@ let g:phpqa_messdetector_autorun=1
 let g:phpqa_codesniffer_autorun=0
 let g:phpqa_codecoverage_autorun=0
 let g:phpqa_run_on_write=0
+map <leader>m :Phpmd<cr>
 
 " php doc block (pdv) template snip dir (<C-p>)
 let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates_snip"

@@ -157,6 +157,9 @@ else
 fi
 export EDITOR=vim
 
+export LC_ALL=en_US.utf8
 export BASH_LIB=~/.bash/
 export PATH=$PATH:~/.bin:$BASH_LIB/bin
 export PGPASSFILE=~/.pgpass.conf
+
+$BASH_LIB/bin/screen-launch

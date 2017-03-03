@@ -1,5 +1,5 @@
 """""""""""""""""""""""
-" Vedbug xdebug tests "
+" Vdebug xdebug tests "
 """""""""""""""""""""""
 " :help Vdebug
 call pathogen#helptags()
@@ -12,6 +12,7 @@ call pathogen#helptags()
 " <F4>: step out
 " <F6>: stop debugging (kills script)
 " <F7>: detach script from debugger
+map <F8> ye:VdebugTrace <C-F>p<cr>
 " <F9>: run to cursor
 " <F10>: toggle line breakpoint
 " <F11>: show context variables (e.g. after 'eval')
@@ -61,5 +62,5 @@ let g:vdebug_keymap = {
 \}
 
 """"""""""""""
-" Vedbug EOL "
+" Vdebug EOL "
 """"""""""""""
