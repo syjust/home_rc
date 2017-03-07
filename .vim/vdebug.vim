@@ -61,6 +61,13 @@ let g:vdebug_keymap = {
 \    "eval_visual" : "<Leader>e",
 \}
 
+"if !exists("g:vdebug_features")
+"    let g:vdebug_features = {}
+"endif
+"let g:vdebug_features['max_depth'] = -1
+"let g:vdebug_features['max_data'] = -1
+"let g:vdebug_features['max_children'] = -1
+
 """"""""""""""
 " Vdebug EOL "
 """"""""""""""
