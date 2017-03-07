@@ -7,40 +7,59 @@
 [merge]
   tool         = vimdiff
 [alias]
+  # BASICS
+  br           = branch
+  ci           = commit
+  cia          = commit --amend
+  co           = checkout
+  st           = status -sb
+
+  # BRANCHES ACTIONS
   pwd          = "! git branch | grep -E '^\\*' | awk '{print $NF}'"
   dev          = "! git branch -a | grep develop"
   rel          = "! git branch -a | grep release"
+  bra          = "! f() { git for-each-ref --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/' | sort; }; f"
   who          = "! f() { branch=${1:-remotes/origin/develop}; git for-each-ref --no-merge $branch --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/developments' | sort; }; f"
   mine         = "! f() { branch=${1:-remotes/origin/develop}; git for-each-ref --no-merge $branch --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/developments' | sort | grep Sylvain; }; f"
   switch       = "! f(){ d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
   sw           = "! f(){ d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
   swh          = "! f(){ git reflog | awk '$3 ~ /checkout/ {print $1\": checkout from \"$6}' | head -n40 | cat --number | odd-color.sh ; }; f"
-  new          = "! f(){ git add -N $1; git add -p $1; }; f"
-  assume       = update-index --assume-unchanged
-  unassume     = update-index --no-assume-unchanged
-  br           = branch
-  ci           = commit
-  cia          = commit --amend
-  co           = checkout
-  df           = diff
-  ds           = diff --name-only
+
+  # INDEX
+  new          = "! f(){ git add -N $1; git add -p $1; }; f" # new empty file
+  assume       = update-index --assume-unchanged # ignore futures modifications
+  unassume     = update-index --no-assume-unchanged # un-ignore futures modifications
+
+  # LOG
   lga          = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph --all
   lg           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph
   l            = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso
+  ln           = "! f(){ git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso ${1:-HEAD} --not ${2:-origin/develop} ;}; f"
+
+  # DIFF & MERGE
+  df           = diff
+  ds           = diff --name-only # diff short
+  dft          = difftool -y
   mg           = merge --no-commit
+  mgt          = mergetool -y
+
+  # ADVANCED REBASE ALIASES
   rb           = rebase
   rbi          = rebase --interactive
   rba          = rebase --abort
   rbc          = rebase --continue
-  st           = status -sb
 
-  dft          = difftool -y
-  mgt          = mergetool -y
-  ls           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --stat
+
+  # ADVANCED LOG FORMATS
+  stat         = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --stat
   lp           = log --abbrev=8 --abbrev-commit --date=iso --patch
   lh           = log --abbrev=8 --abbrev-commit --date=iso --patch --histogram
+
+  # ADVANCED STASH COMMANDS
   pop          = stash pop
-  sts          = stash
+  save         = stash save
+  ls           = stash list
+  list         = stash list
 [color]
   branch       = auto
   diff         = auto
