@@ -34,6 +34,7 @@
   lga          = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph --all
   lg           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph
   l            = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso
+  la           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --all
   ln           = "! f(){ git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso ${1:-HEAD} --not ${2:-origin/develop} ;}; f"
 
   # DIFF & MERGE
@@ -66,7 +67,7 @@
   status       = auto
   interactive  = auto
 [push]
-  default      = matching
+  default      = simple
 [commit]
   template     = ~/.gitconf/commit-message.txt
 [init]
