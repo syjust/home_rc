@@ -113,18 +113,18 @@ function _ssh_agent() {
 
     ssh-add -l >/dev/null 2>&1
     result=$?
-    if [ $result = 2 ]; then
+    if [ $result -eq 2 ]; then
         # read ssh-agent config from file and retry
         [ -r ~/.ssh-agent ] && source ~/.ssh-agent >/dev/null
         ssh-add -l >/dev/null 2>&1
         result=$?
-        if [ $result = 2 ]; then
+        if [ $result -eq 2 ]; then
             ssh-agent > ~/.ssh-agent
             source ~/.ssh-agent >/dev/null
             ssh-add
         fi
     fi
-    if [ $result = 1 ]; then
+    if [ $result -ne 1 ]; then
         ssh-add
     fi
 }
@@ -162,4 +162,4 @@ export BASH_LIB=~/.bash/
 export PATH=$PATH:~/.bin:$BASH_LIB/bin
 export PGPASSFILE=~/.pgpass.conf
 
-$BASH_LIB/bin/screen-launch
+#$BASH_LIB/bin/screen-launch
