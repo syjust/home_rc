@@ -13,20 +13,21 @@
   cia          = commit --amend
   co           = checkout
   st           = status -sb
+  tst          = status -sb
 
   # BRANCHES ACTIONS
   pwd          = "! git branch | grep -E '^\\*' | awk '{print $NF}'"
   dev          = "! git branch -a | grep develop"
   rel          = "! git branch -a | grep release"
   bra          = "! f() { git for-each-ref --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/' | sort; }; f"
-  who          = "! f() { branch=${1:-remotes/origin/develop}; git for-each-ref --no-merge $branch --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/developments' | sort; }; f"
-  mine         = "! f() { branch=${1:-remotes/origin/develop}; git for-each-ref --no-merge $branch --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/developments' | sort | grep Sylvain; }; f"
-  switch       = "! f(){ d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
-  sw           = "! f(){ d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
-  swh          = "! f(){ git reflog | awk '$3 ~ /checkout/ {print $1\": checkout from \"$6}' | head -n40 | cat --number | odd-color.sh ; }; f"
+  who          = "! f() { local b=${1:-remotes/origin/develop}; git for-each-ref --no-merge $b --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/developments' | sort; }; f"
+  mine         = "! f() { local b=${1:-remotes/origin/develop}; git for-each-ref --no-merge $b --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/developments' | sort | grep Sylvain; }; f"
+  switch       = "! f(){ local d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
+  sw           = "! f(){ local d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
+  swh          = "! f(){ git reflog | awk '$3 ~ /checkout/ {print $1\": checkout from \"$6}' | head -n40 | cat --number | odd-color.sh; }; f"
 
   # INDEX
-  new          = "! f(){ git add -N $1; git add -p $1; }; f" # new empty file
+  empty        = "! f(){ git add -N $1; git add -p $1; }; f" # new empty file
   assume       = update-index --assume-unchanged # ignore futures modifications
   unassume     = update-index --no-assume-unchanged # un-ignore futures modifications
 
@@ -35,18 +36,19 @@
   lg           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph
   l            = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso
   la           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --all
-  ln           = "! f(){ git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso ${1:-HEAD} --not ${2:-origin/develop} ;}; f"
+  ln           = "! f(){ local rev=\"${1:-HEAD}\" b=\"${2:-origin/develop}\"; git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso $rev --not $b; }; f"
 
   # DIFF & MERGE
   df           = diff
-  ds           = diff --name-only # diff short
+  dfs          = diff --name-only # diff short
+  dfc          = diff --cached
   dft          = difftool -y
   mg           = merge --no-commit
   mgt          = mergetool -y
 
   # ADVANCED REBASE ALIASES
-  rb           = rebase
-  rbi          = rebase --interactive
+  rb           = rebase -Xignore-all-space
+  rbi          = rebase -Xignore-all-space --interactive
   rba          = rebase --abort
   rbc          = rebase --continue
 
@@ -58,7 +60,7 @@
 
   # ADVANCED STASH COMMANDS
   pop          = stash pop
-  save         = stash save
+  save         = "! f() { local mess=\"$@\"; while [ -z \"$mess\" ] ; do echo -n \"give me a message : \" && read mess; done; git stash save -u \"$mess\"; }; f"
   ls           = stash list
   list         = stash list
 [color]
