@@ -54,7 +54,6 @@ if !&diff
   " map <C-g> for previous in tag-stack (inverse of <C-t>
   map <C-G> :tag<cr>
 
-  " se history after pathogen#infect() because it seems be reloaded during bundle process
 endif
 
 " Search only over a visual range [http://vim.wikia.com/wiki/Search_only_over_a_visual_range]
@@ -75,4 +74,6 @@ vnoremap <silent> ? :<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|ex
 
 " foo bar baz ... metasyntactic variables
 source ~/.vim/cycle-metasyntactic-variables.vim
+
+" se history after pathogen#infect() because it seems be reloaded during bundle process
 set history=500
