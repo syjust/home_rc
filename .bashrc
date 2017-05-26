@@ -107,38 +107,38 @@ alias scp='_ssh_agent && scp'
 alias ssh='_ssh_agent && ssh'
 alias git="_ssh_agent && git"
 
-function _ssh_agent() {
-    # If no SSH agent is already running, start one now. Re-use sockets so we never
-    # have to start more than one session.
+_ssh_agent() {
+  # If no SSH agent is already running, start one now. Re-use sockets so we never
+  # have to start more than one session.
 
+  ssh-add -l >/dev/null 2>&1
+  result=$?
+  if [ $result -eq 2 ]; then
+    # read ssh-agent config from file and retry
+    [ -r ~/.ssh-agent ] && source ~/.ssh-agent >/dev/null
     ssh-add -l >/dev/null 2>&1
     result=$?
     if [ $result -eq 2 ]; then
-        # read ssh-agent config from file and retry
-        [ -r ~/.ssh-agent ] && source ~/.ssh-agent >/dev/null
-        ssh-add -l >/dev/null 2>&1
-        result=$?
-        if [ $result -eq 2 ]; then
-            ssh-agent > ~/.ssh-agent
-            source ~/.ssh-agent >/dev/null
-            ssh-add
-        fi
+      ssh-agent > ~/.ssh-agent
+      source ~/.ssh-agent >/dev/null
+      ssh-add -t 604800
     fi
-    if [ $result -ne 1 ]; then
-        ssh-add
-    fi
+  fi
+  if [ $result -eq 1 ]; then
+    ssh-add -t 604800
+  fi
 }
 
 
 _ssh() {
-    local cur prev opts
-    COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts=$(grep '^Host' ~/.ssh/config | grep -v '[?*]' | cut -d ' ' -f 2-)
+  local cur prev opts
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  opts=$(grep '^Host' ~/.ssh/config | grep -v '[?*]' | cut -d ' ' -f 2-)
 
-    COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
-    return 0
+  COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
+  return 0
 }
 
 # enable programmable completion features (you don't need to enable
