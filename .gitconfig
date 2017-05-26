@@ -11,6 +11,7 @@
   ci           = commit
   cia          = commit --amend
   co           = checkout
+  s            = status -sb
   st           = status -sb
   tst          = status -sb
 
@@ -29,7 +30,7 @@
   rel          = "! git branch -a | grep release"
 
   # INDEX
-  empty        = "! f(){ git add -N $1; git add -p $1; }; f" # new empty file
+  empty        = "! f(){ git add -N $1; }; f" # new empty file
   assume       = update-index --assume-unchanged # ignore futures modifications
   unassume     = update-index --no-assume-unchanged # un-ignore futures modifications
 
@@ -43,19 +44,31 @@
   lns          = l --not --short
 
   # DIFF & MERGE
-  df           = diff
+  df           = diff -U5
   dfs          = diff --name-only # diff short
-  dfc          = diff --cached
+  dfc          = diff -U5 --cached
   dft          = difftool -y
-  mg           = merge --no-commit
+  mg           = merge -X ignore-space-change -X ignore-all-space -X ignore-space-at-eol
+  mgn          = merge -X ignore-space-change -X ignore-all-space -X ignore-space-at-eol --no-commit
   mgt          = mergetool -y
+  mga          = merge --abort
+  
+  # PUSH
+  pushf        = push --force
+  pushu        = "!git push --set-upstream origin `git pwd`"
 
   # ADVANCED REBASE ALIASES
-  rb           = rebase -Xignore-all-space
-  rbi          = rebase -Xignore-all-space --interactive
+  rb           = rebase -X ignore-space-change -X ignore-all-space -X ignore-space-at-eol -X ignore-blank-lines -X "diff-algorithm=histogram"
+  rbii         = rebase -X ignore-space-change -X ignore-all-space -X ignore-space-at-eol -X ignore-blank-lines --interactive
+  rbi          = rebase --interactive
   rba          = rebase --abort
   rbc          = rebase --continue
 
+  # BISECT
+  bss          = bisect start
+  bsb          = bisect bad
+  bsg          = bisect good
+  bsr          = bisect reset
 
   # ADVANCED LOG FORMATS
   stat         = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --stat
