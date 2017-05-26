@@ -97,7 +97,8 @@ if exists('php_project_path')
     \        "tagfile" : &tags,
     \        "args" : g:ctags_common_args,
     \        "cmd" : g:Tlist_Ctags_Cmd,
-    \        "files" : g:php_project_path
+    \        "files" : g:php_project_path,
+    \        "createAnyWhere" : 1
     \    }
     \}
     " static .tags declaration because tagfile seem's don't work fine
