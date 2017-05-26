@@ -8,7 +8,6 @@
   tool         = vimdiff
 [alias]
   # BASICS
-  br           = branch
   ci           = commit
   cia          = commit --amend
   co           = checkout
@@ -16,15 +15,18 @@
   tst          = status -sb
 
   # BRANCHES ACTIONS
-  pwd          = "! git branch | grep -E '^\\*' | awk '{print $NF}'"
+  pwd          = br -p
+  bra          = br -a
+  who          = br -w
+  whop         = br -wp
+  old          = br -o
+  sw           = br --switch
+  swh          = br --history
+  mine         = br --mine
+  m9           = br --m9
+  m8           = br --m8
   dev          = "! git branch -a | grep develop"
   rel          = "! git branch -a | grep release"
-  bra          = "! f() { git for-each-ref --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/' | sort; }; f"
-  who          = "! f() { local b=${1:-remotes/origin/develop}; git for-each-ref --no-merge $b --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/developments' | sort; }; f"
-  mine         = "! f() { local b=${1:-remotes/origin/develop}; git for-each-ref --no-merge $b --format='%(color:yellow)%(refname:short)%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset) %(color:green)(%(committerdate:short))%(color:reset)' 'refs/remotes/origin/developments' | sort | grep Sylvain; }; f"
-  switch       = "! f(){ local d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
-  sw           = "! f(){ local d=${1-1}; git checkout `git reflog | awk '$3 ~ /checkout/ {print $6}' | head -n$d | tail -n1`; }; f"
-  swh          = "! f(){ git reflog | awk '$3 ~ /checkout/ {print $1\": checkout from \"$6}' | head -n40 | cat --number | odd-color.sh; }; f"
 
   # INDEX
   empty        = "! f(){ git add -N $1; git add -p $1; }; f" # new empty file
@@ -32,11 +34,13 @@
   unassume     = update-index --no-assume-unchanged # un-ignore futures modifications
 
   # LOG
-  lga          = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph --all
-  lg           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --graph
-  l            = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso
-  la           = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso --all
-  ln           = "! f(){ local rev=\"${1:-HEAD}\" b=\"${2:-origin/develop}\"; git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev=8 --abbrev-commit --date=iso $rev --not $b; }; f"
+  lg           = l -g
+  la           = l -a
+  lgs          = l -g -s
+  lga          = l -g -a
+  # log not in origin/develop
+  ln           = l --not
+  lns          = l --not --short
 
   # DIFF & MERGE
   df           = diff
