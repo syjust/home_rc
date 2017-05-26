@@ -1,5 +1,6 @@
 " default globals vim configuration
 set autoindent
+set laststatus=2 " always display filename
 set expandtab
 set number
 set ruler
@@ -44,7 +45,9 @@ if !&diff
   " -v  variables
   " -j  javascript functions
   let g:ctags_common_args = ""
-  nnoremap <C-k> :Tlist<CR><C-w><C-h>
+  nnoremap <C-h> :Tlist<CR><C-w><C-h>
+  nnoremap <C-k> 25k
+  nnoremap <C-j> 25j
   let mapleader = ","
   " common <C-f> behavior
   nnoremap <C-f> ye:copen<CR>:Ack <C-f>p<CR>
