@@ -80,11 +80,14 @@
   save         = "! f() { local mess=\"$@\"; while [ -z \"$mess\" ] ; do echo -n \"give me a message : \" && read mess; done; git stash save -u \"$mess\"; }; f"
   ls           = stash list
   list         = stash list
+
 [color]
   branch       = auto
   diff         = auto
   status       = auto
   interactive  = auto
+[pull]
+  default      = simple
 [push]
   default      = simple
 [commit]
