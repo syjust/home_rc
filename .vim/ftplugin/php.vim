@@ -3,6 +3,8 @@ let php_folding=0
 " big title php coment with '\'
 map \ A //yyPv$r/yyjpklll
 
+map <leader>n <Esc>:EnableFastPHPFolds<Cr>
+
 " specific php indents
 set shiftwidth=4
 set softtabstop=4
@@ -66,7 +68,20 @@ let g:phpcomplete_mappings = {
 " -v  variables 
 " -j  javascript functions 
 
-let g:ctags_common_args = " --regex-PHP=\"/^(\\s*([A-Z_]+)\\s*=\\s*([0-9]+|[tT][rR][uU][eE]|[fF][aA][lL][sS][Ee]|[_A-Z]+|['\\\"][^'\\\"]+['\\\"])\\s*[,;]?)/\\2/d/\" --regex-PHP='/const\\s+([^ \\t=]+)/\\1/d/' -R --php-kinds=+cidf-vj "
+"let g:ctags_common_args .= "--languages=PHP "
+"let g:ctags_common_args .= "-f ~/ramfs/rest-billing.php.tags "
+"let g:ctags_common_args .= "--exclude=/home/sjust/origin/data/COMMON/www/rest-billing/lib/SMPP "
+"let g:ctags_common_args .= "--exclude=/home/sjust/origin/data/COMMON/www/rest-billing/lib/sftp "
+"let g:ctags_common_args .= "--exclude=/home/sjust/origin/data/COMMON/www/rest-billing/lib/html2pdf "
+"let g:ctags_common_args .= "--exclude=/home/sjust/origin/data/COMMON/www/rest-billing/lib/DB/DBWrapper.class.php "
+let g:ctags_common_args  = "-R --php-kinds=+cidf-vj "
+let g:ctags_common_args .= "--regex-PHP=\"/^(\\s*([A-Z_]+)\\s*=\\s*([0-9]+|[tT][rR][uU][eE]|[fF][aA][lL][sS][Ee]|[_A-Z]+|['\\\"][^'\\\"]+['\\\"])\\s*[,;]?)/\\2/d/\" "
+let g:ctags_common_args .= "--regex-PHP='/abstract\\s+class\\s+([^\\s]+)/\\1/c/' "
+let g:ctags_common_args .= "--regex-PHP='/interface\\s+([^\\s]+)/\\1/c/' "
+let g:ctags_common_args .= "--regex-PHP='/((public|static|protected|private|final)\\s+)+\\$([^\\s=]+)/\\3/p/' "
+let g:ctags_common_args .= "--regex-PHP='/const\\s+([^\\s=]+)/\\1/d/' "
+let g:ctags_common_args .= "--regex-PHP='/\\s*((public|static|protected|private|final|abstract)\\s+)?((public|static|protected|private|final|abstract)\\s+)?((public|static|protected|private|final|abstract)\\s+)function\\s+([^\\(]\\+)\\s*\\([^\\)]*\\)/\\7/f/' "
+let g:ctags_common_args .= "--regex-PHP='/[[:blank:]]*((public|static|protected|private|final|abstract)[[:blank:]]+){1,3}function[[:blank:]]+([^\\(]+)[[:blank:]]*\\([^\\)]*\\)/\\3/f/e' "
 
 source ~/.vim/after/projects.vim
 
