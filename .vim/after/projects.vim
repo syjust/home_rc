@@ -1,12 +1,24 @@
 " only php projects for the moment
 let g:vim_projects = [
   \ {
-    \ 'path' : $HOME.'/origin/data/COMMON/www/rest-billing',
-    \ 'excludes' : [ 'lib/SMPP', 'lib/sftp', 'lib/html2pdf' ],
-    \ 'ramfs' : $HOME.'/ramfs/rest-billing'
+    \ 'path' : $HOME.'/origin/data/COMMON/www/rest-billing-dev',
+    \ 'excludes' : [ 'lib/SMPP', 'lib/sftp', 'lib/html2pdf', 'lib/DB/DBWrapper.class.php' ],
+    \ 'ramfs' : $HOME.'/ramfs/rest-billing-dev'
+  \ } ,
+  \ {
+    \ 'path' : $HOME.'/origin/data/COMMON/www/rest-billing-rc',
+    \ 'excludes' : [ 'lib/SMPP', 'lib/sftp', 'lib/html2pdf', 'lib/DB/DBWrapper.class.php' ],
+    \ 'ramfs' : $HOME.'/ramfs/rest-billing-rc'
   \ } ,
   \ { 'path' : $HOME.'/origin/data/COMMON/www/notification', 'ramfs' : $HOME.'/ramfs/notification' },
-  \ { 'path' : $HOME.'/origin/data/COMMON/www/billing-manager', 'ramfs' : $HOME.'/ramfs/billing-manager' }
+  \ { 'path' : $HOME.'/origin/data/COMMON/www/billing-manager', 'ramfs' : $HOME.'/ramfs/billing-manager',
+      \ 'abb' : [
+        \ {
+          \ 'key' : 'wed',
+          \ 'cmd' : "WE_Debug::vardump($e,'e',__FILE__,__LINE__,__METHOD__,WE_Debug::CONTINUER,false,null,false);"
+        \ }
+      \ ]
+  \ }
 \ ]
 
 if exists('vim_projects')
@@ -20,6 +32,11 @@ if exists('vim_projects')
       endif
       if has_key(cwd,'ramfs')
         let g:ctags_ramfs = cwd.ramfs
+      endif
+      if has_key(cwd,'abb')
+        for m in cwd.abb
+          execute "abbreviate " . m.key . " " . m.cmd .""
+        endfor
       endif
     endif
   endfor
