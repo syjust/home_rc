@@ -4,7 +4,10 @@
 " :help Vdebug
 call pathogen#helptags()
 
-" add ?XDEBUG_SESSION_START=1 in your get URL to connect Browser to vim debug
+" =========================================
+" add >>>>>> ?XDEBUG_SESSION_START=1 <<<<<< in your get URL to connect Browser to vim debug
+" =========================================
+"
 " Once in debugging mode, the following default mappings are available:
 " <F5>: start/run (to next breakpoint/end of script)
 " <F2>: step over
