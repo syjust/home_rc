@@ -77,3 +77,7 @@ source ~/.vim/cycle-metasyntactic-variables.vim
 
 " se history after pathogen#infect() because it seems be reloaded during bundle process
 set history=500
+
+" RED COLOR over 120th column
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+match OverLength /\%121v.*/
