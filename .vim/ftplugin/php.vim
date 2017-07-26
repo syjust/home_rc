@@ -46,6 +46,9 @@ map <leader>m :Phpmd<cr>
 let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates_snip"
 nnoremap <C-p> :call pdv#DocumentWithSnip()<CR>
 
+" phpunit Test from list of methods basing on ClassTest name
+map <leader>c :s#\(.*\)#\="    /**\r     * test".substitute(submatch(1), '\(.*\)', '\u\1', 'g')."\r     * @cover ".substitute(expand('%:t'), 'Test.php', '', 'g')."::".submatch(1)."()\r     * @author ".pdv_author."\r     * @date ".strftime('%Y-%m-%d')."\r     * @todo implement test : test".substitute(submatch(1), '\(.*\)', '\u\1', 'g')."()\r     */\r    public function test".substitute(submatch(1), '\(.*\)', '\u\1', 'g')."()\r    {\r        $this->markTestIncomplete('test ".substitute(expand('%:t'), 'Test.php', '', 'g')."::".submatch(1)."() here');\r    }\r"#<cr>
+
 " PHP Complete :
 " jump_to_def' <C-]>
 " jump_to_def_split': <C-w><C-]>
