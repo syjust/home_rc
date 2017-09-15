@@ -1,3 +1,0 @@
-COMMENT = 
-BRANCH = {branch}
-LEVEL = 1
