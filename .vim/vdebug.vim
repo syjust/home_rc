@@ -43,11 +43,12 @@ let g:vdebug_options= {
 \    "watch_window_style" : 'expanded',
 \    "marker_default" : '⬦',
 \    "marker_closed_tree" : '▸',
-\    "marker_open_tree" : '▾'
+\    "marker_open_tree" : '▾',
+\    "continuous_mode"  : 1
 \}
 let g:vdebug_options["break_on_open"] = 0
 let g:vdebug_options["watch_window_style"] = 'compact' 
-let g:vdebug_options["timeout"] = 30
+let g:vdebug_options["timeout"] = 300
 
 " default keymap
 let g:vdebug_keymap = {
