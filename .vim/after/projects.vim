@@ -1,6 +1,16 @@
 " only php projects for the moment
 let g:vim_projects = [
   \ {
+    \ 'path' : '/var/www/magento',
+    \ 'ramfs' : $HOME.'/ramfs/mage',
+      \ 'abb' : [
+        \ {
+          \ 'key' : 'mlog',
+          \ 'cmd' : "Mage::log('', null, 'syl.log');"
+        \ }
+      \ ]
+  \ } ,
+  \ {
     \ 'path' : $HOME.'/origin/data/COMMON/www/rest-billing-dev',
     \ 'excludes' : [ 'lib/SMPP', 'lib/sftp', 'lib/html2pdf', 'lib/DB/DBWrapper.class.php' ],
     \ 'ramfs' : $HOME.'/ramfs/rest-billing-dev'
