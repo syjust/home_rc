@@ -108,5 +108,6 @@ if exists('php_project_path')
     " <C-f> : find all occurence under cursor fro type php excluding
     " overwrite <C-f> for PHP env
     " @todo get ignore form project.vim
-    nnoremap <C-f> ye:copen<CR>:Ack --type=php --ignore-file=is:.php.tags --ignore-dir=.git --ignore-dir=lib/html2pdf --ignore-dir=lib/Zend --ignore-dir=lib/sftp <C-f>p<CR>
+    "nnoremap <C-f> ye:copen<CR>:Ack --type=php --ignore-file=is:.php.tags --ignore-dir=.git --ignore-dir=lib/html2pdf --ignore-dir=lib/Zend --ignore-dir=lib/sftp <C-f>p<CR>
+    nnoremap <C-f> ye:copen<CR>:Ack --type=php --ignore-dir=.git <C-f>p<CR>
 endif
