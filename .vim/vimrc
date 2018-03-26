@@ -7,9 +7,9 @@ set ruler
 set undofile
 set undodir=~/.vim/undo/
 set background=dark
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set nocompatible " Because filetype detection doesn't work well in compatible mode
 syntax enable
 
@@ -81,3 +81,23 @@ set history=500
 " RED COLOR over 120th column
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 match OverLength /\%121v.*/
+
+let b:fugitive_blame_arguments = "--date short -b"
+map <leader>b <Esc>:Gblame<Cr>
+
+if &diff
+    execute pathogen#infect('~/.vim/diff/{}')
+    set diffopt+=iwhite
+    set diffexpr=DiffW()
+    function DiffW()
+      let opt = ""
+       if &diffopt =~ "icase"
+         let opt = opt . "-i "
+       endif
+       if &diffopt =~ "iwhite"
+         let opt = opt . "-w " " swapped vim's -b with -w
+       endif
+       silent execute "!diff -a --binary " . opt .
+         \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
+    endfunction
+endif
