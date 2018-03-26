@@ -76,7 +76,7 @@ let loaded_phpfolding = 1
 if !exists("g:DisableAutoPHPFolding")
 	let g:DisableAutoPHPFolding = 0
 endif
-let g:DisablePHPFoldingClass = get(g:, 'DisablePHPFoldingClass', 1)
+let g:DisablePHPFoldingClass = get(g:, 'DisablePHPFoldingClass', 0)
 " }}}
 
 command! EnableFastPHPFolds call <SID>EnableFastPHPFolds()
@@ -183,7 +183,7 @@ function! s:PHPCustomFolds() " {{{
 
 	if !g:DisablePHPFoldingClass
 		" Fold class without PhpDoc (class foo {})
-		call s:PHPFoldPureBlock('^\s*\(abstract\s*\)\?class', s:FOLD_WITH_PHPDOC)
+		call s:PHPFoldPureBlock('^\s*\(abstract\s*\)\?\(class\|interface\)', s:FOLD_WITH_PHPDOC)
 	endif
 
 	" Fold define()'s with their PhpDoc
